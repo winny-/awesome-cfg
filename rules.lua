@@ -1,6 +1,7 @@
 local beautiful = require('beautiful')
 local awful = require('awful')
 local keys = require './keys'
+local buttons = require './buttons'
 
 -- Rules to apply to new clients (through the "manage" signal).
 return {
@@ -11,7 +12,7 @@ return {
                     focus = awful.client.focus.filter,
                     raise = true,
                     keys = keys.client,
-                    buttons = clientbuttons,
+                    buttons = buttons.client,
                     screen = awful.screen.preferred,
                     placement = awful.placement.no_overlap+awful.placement.no_offscreen,
                     size_hints_honor=false
