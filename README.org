@@ -1,0 +1,17 @@
+#+title: My Awesome Config
+* Layout
+
+  In general ~require './file'~ should not run code, only import
+  functions. As such every relative require in =rc.lua= should be used
+  in some sort of function application.
+
+  - [[file:rc.lua][rc.lua]] :: The config entrypoint
+  - [[file:bar.lua][bar.lua]] :: The bar(s)
+  - [[file:defaults.lua][defaults.lua]] :: Easy tunables
+  - [[file:helper.lua][helper.lua]] :: Utility
+  - [[file:keys.lua][keys.lua]] :: Keyboard shortcuts
+  - [[file:buttons.lua][buttons.lua]] :: Mouse shortcuts
+  - [[file:rules.lua][rules.lua]] :: Window placement rules
+  - [[file:signals.lua][signals.lua]] :: Signals for things such as new windows, focus
+       change, focus policy.
+  - [[file:error_handling.lua][error_handling.lua]] :: Handle startup and runtime errors
