@@ -4,6 +4,7 @@ local beautiful = require 'beautiful'
 local wibox = require 'wibox'
 
 local buttons = require './buttons'
+local helper = require './helper'
 
 local callbacks = {
     manage_cb = function (c)
@@ -74,6 +75,9 @@ local function connect()
     -- Indicate focused frame
     client.connect_signal("focus", callbacks.focus_cb)
     client.connect_signal("unfocus", callbacks.unfocus_cb)
+
+    -- Re-set wallpaper when a screen's geometry changes
+    screen.connect_signal('property::geometry', helper.set_wallpaper)
 end
 
 return gears.table.join(callbacks, {connect = connect})
