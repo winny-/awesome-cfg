@@ -11,7 +11,12 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font          = "monospace 9"
+local font_size = 10
+local font_family = 'monospace'
+
+theme.font          = string.format("%s %d", font_family, font_size)
+theme.tasklist_font_minimized = string.format("%s Italic %d", font_family, font_size)
+theme.tasklist_font_focus = string.format("%s Bold %d", font_family, font_size)
 
 theme.bg_normal     = "#222222"
 theme.bg_focus      = "#005577"

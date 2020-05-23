@@ -5,8 +5,6 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 
 local defaults = require './defaults'
 
-
--- {{{ Key bindings
 local globalkeys = gears.table.join(
    awful.key({ defaults.modkey,           }, "s",      hotkeys_popup.show_help,
       {description="show help", group="awesome"}),
