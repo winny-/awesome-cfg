@@ -75,7 +75,7 @@ local globalkeys = gears.table.join(
    awful.key({ defaults.modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
       {description = "select previous", group = "layout"}),
 
-   awful.key({ defaults.modkey, "Control" }, "n",
+   awful.key({ defaults.modkey, "Control" }, "z",
       function ()
          local c = awful.client.restore()
          -- Focus restored client
@@ -122,7 +122,7 @@ local clientkeys = gears.table.join(
       {description = "move to screen", group = "client"}),
    awful.key({ defaults.modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
       {description = "toggle keep on top", group = "client"}),
-   awful.key({ defaults.modkey,           }, "n",
+   awful.key({ defaults.modkey,           }, "z",
       function (c)
          -- The client currently has the input focus, so it cannot be
          -- minimized, since minimized clients can't have the focus.
