@@ -17,6 +17,10 @@ local myloadavg = awful.widget.watch("cut -f1-3 -d' ' < /proc/loadavg", 1)
 local mydf = awful.widget.watch("rootdf", 5) 
 
 
+local function only_on_primary(widget) 
+    return awful.widget.only_on_screen(widget, awful.screen.primary)
+end
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
     awful.button({ }, 1, function(t) t:view_only() end),
@@ -93,15 +97,20 @@ return {
             },
             s.mytasklist, -- Middle widget
             { -- Right widgets
-                layout = wibox.layout.fixed.horizontal,
-                wibox.widget.textbox(' '),
-                mydf,
-                wibox.widget.textbox(' | '),
-                myloadavg,
-                wibox.widget.textbox(' | '),
-                mytextclock,
-                wibox.widget.textbox(' '),
-                wibox.widget.systray(),
+                layout = awful.widget.only_on_screen,
+                screen = 'primary',
+                {
+                    layout = wibox.layout.fixed.horizontal,
+                    wibox.widget.textbox(' '),
+                    mydf,
+                    wibox.widget.textbox(' | '),
+                    myloadavg,
+                    wibox.widget.textbox(' | '),
+                    mytextclock,
+                    wibox.widget.textbox(' '),
+                    wibox.widget.systray(),
+                    
+                },
             },
         }
     end

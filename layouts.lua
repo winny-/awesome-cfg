@@ -1,12 +1,11 @@
 local suit = require 'awful.layout.suit'
+local lain = require 'lain.layout'
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 return {
    suit.floating,
    suit.tile,
-   suit.tile.left,
    suit.tile.bottom,
-   suit.tile.top,
    suit.fair,
    suit.fair.horizontal,
    suit.spiral,
@@ -15,7 +14,7 @@ return {
    suit.max.fullscreen,
    suit.magnifier,
    suit.corner.nw,
-   -- suit.corner.ne,
-   -- suit.corner.sw,
-   -- suit.corner.se,
+   lain.centerwork,
+   lain.cascade,
+   lain.termfair,
 }
