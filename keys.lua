@@ -2,7 +2,7 @@ local awful = require 'awful'
 local gears = require 'gears'
 local menubar = require 'menubar'
 local hotkeys_popup = require("awful.hotkeys_popup").widget
-
+local lain = require 'lain'
 
 local defaults = require './defaults'
 
@@ -50,9 +50,9 @@ local globalkeys = gears.table.join(
              'reload awesome', 'awesome'),
     bind_mod({'Shift', 'Control'}, 'Escape', awesome.quit,
         'quit awesome', 'awesome'),
-    bind('f', function() awful.tag.incmwfact(0.05) end,
+    bind('f', function() awful.tag.incmwfact(defaults.master_width_factor_step) end,
          'increase master width factor', 'layout'),
-    bind('b', function() awful.tag.incmwfact(-0.05) end,
+    bind('b', function() awful.tag.incmwfact(-defaults.master_width_factor_step) end,
          'decrease master width factor', 'layout'),
     bind_mod('Shift', 'f', function() awful.tag.incnmaster(1, nil, true) end,
              'increase the number of master clients', 'layout'),
@@ -60,8 +60,10 @@ local globalkeys = gears.table.join(
              'decrease the number of master clients', 'layout'),
     bind_mod('Control', 'f', function () awful.tag.incncol(1, nil, true) end,
              'increase the number of columns', 'layout'),
-    bind_mod('Control', 'f', function () awful.tag.incncol(-1, nil, true) end,
+    bind_mod('Control', 'b', function () awful.tag.incncol(-1, nil, true) end,
              'decrease the number of columns', 'layout'),
+    bind('equal', function() lain.util.useless_gaps_resize(defaults.gap_step) end, 'increase gap size', 'tag'),
+    bind('minus', function() lain.util.useless_gaps_resize(-defaults.gap_step) end, 'decrease gap size', 'tag'),
 
    -- Standard program
    awful.key({ defaults.modkey,           }, "space", function () awful.layout.inc( 1)                end,

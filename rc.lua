@@ -25,7 +25,7 @@ awful.rules.rules = require './rules'
 
 awful.screen.connect_for_each_screen(helper.set_wallpaper) -- Set wallpaper on each screen
 awful.screen.connect_for_each_screen(function(s) -- set up tags on each screen
-      awful.tag(defaults.tags, s, defaults.layout)
+        awful.tag(defaults.tags, s, defaults.layout)
 end)
 awful.screen.connect_for_each_screen(bar.main) -- set up a bar on each screen
 
