@@ -64,7 +64,6 @@ local globalkeys = gears.table.join(
              'decrease the number of columns', 'layout'),
     bind('equal', function() lain.util.useless_gaps_resize(defaults.gap_step) end, 'increase gap size', 'tag'),
     bind('minus', function() lain.util.useless_gaps_resize(-defaults.gap_step) end, 'decrease gap size', 'tag'),
-
    -- Standard program
    awful.key({ defaults.modkey,           }, "space", function () awful.layout.inc( 1)                end,
       {description = "select next", group = "layout"}),
@@ -176,6 +175,18 @@ for i = 1, 9 do
                                     end,
                                     {description = "toggle focused client on tag #" .. i, group = "tag"})
    )
+end
+
+for i = 1, 9 do
+    globalkeys = gears.table.join(globalkeys,
+                                  bind_mod('Mod1', tostring(i), function()
+                                               local c = awful.client.visible()[i]
+                                               if c then
+                                                   c:jump_to()
+                                                   c:raise()
+                                               end
+                                                                end,
+                                           string.format('Focus the %dth client', i), 'client'))
 end
 
 return {
