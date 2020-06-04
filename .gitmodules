@@ -1,3 +1,6 @@
 [submodule "lain"]
 	path = lain
 	url = https://github.com/lcpz/lain.git
+[submodule "dynamite"]
+	path = dynamite
+	url = git@gitlab.com:winny/dynamite.git
