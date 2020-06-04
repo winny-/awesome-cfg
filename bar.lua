@@ -5,6 +5,8 @@ local gears = require 'gears'
 local defaults = require './defaults'
 local helper = require './helper'
 
+local lain = require './lain'
+
 local mytextclock = wibox.widget.textclock('<span font_weight="normal">%a %b %d <b>%T</b></span>' ,1)
 local mycalendar = awful.widget.calendar_popup.month()
 mycalendar:attach(mytextclock, 'tr', {on_hover=false})
@@ -15,6 +17,55 @@ local myloadavg = awful.widget.watch("cut -f1-3 -d' ' < /proc/loadavg", 1)
 -- df -h --output=avail / | awk 'END { printf(\"%s\", $1); }'
 -- does not work
 local mydf = awful.widget.watch("rootdf", 5) 
+
+-- battery infos from freedesktop upower
+local mybattery = nil
+local fh, emsg = io.open('/sys/class/power_supply/BAT0/uevent')
+if not emsg then
+    fh:close()
+    mybattery = awful.widget.watch(
+        { awful.util.shell, "-c", "upower -i /org/freedesktop/UPower/devices/battery_BAT0 | sed -n '/present/,/icon-name/p'" },
+        30,
+        function(widget, stdout)
+            local icons = {
+                discharging='🔋',
+                charging='⚡',
+                fully='🔌',
+                unknown='?',
+            }
+            local bat_now = {
+                present      = "N/A",
+                state        = "N/A",
+                warninglevel = "N/A",
+                energy       = "N/A",
+                energyfull   = "N/A",
+                energyrate   = "N/A",
+                voltage      = "N/A",
+                percentage   = "N/A",
+                capacity     = "N/A",
+                icon         = "N/A"
+            }
+
+            for k, v in string.gmatch(stdout, '([%a]+[%a|-]+):%s*([%a|%d]+[,|%a|%d]-)') do
+                if     k == "present"       then bat_now.present      = v
+                elseif k == "state"         then bat_now.state        = v
+                elseif k == "warning-level" then bat_now.warninglevel = v
+                elseif k == "energy"        then bat_now.energy       = string.gsub(v, ",", ".") -- Wh
+                elseif k == "energy-full"   then bat_now.energyfull   = string.gsub(v, ",", ".") -- Wh
+                elseif k == "energy-rate"   then bat_now.energyrate   = string.gsub(v, ",", ".") -- W
+                elseif k == "voltage"       then bat_now.voltage      = string.gsub(v, ",", ".") -- V
+                elseif k == "percentage"    then bat_now.percentage   = tonumber(v)              -- %
+                elseif k == "capacity"      then bat_now.capacity     = string.gsub(v, ",", ".") -- %
+                elseif k == "icon-name"     then bat_now.icon         = v
+                end
+            end
+
+            local state_icon = icons[bat_now.state]
+            if not state_icon then state_icon = bat_now.state end
+            widget:set_text(string.format("%s%s%%", state_icon, bat_now.percentage))
+        end
+    )
+end
 
 
 local function only_on_primary(widget) 
@@ -64,7 +115,6 @@ local tasklist_buttons = gears.table.join(
             awful.client.focus.byidx(-1)
 end))
 
-
 return {
     main = function(s)
         -- Create a promptbox for each screen
@@ -101,15 +151,28 @@ return {
                 screen = 'primary',
                 {
                     layout = wibox.layout.fixed.horizontal,
-                    wibox.widget.textbox(' '),
-                    mydf,
-                    wibox.widget.textbox(' | '),
-                    myloadavg,
-                    wibox.widget.textbox(' | '),
-                    mytextclock,
-                    wibox.widget.textbox(' '),
+                    gears.table.join({
+                            layout = wibox.layout.fixed.horizontal,
+                            spacing = 20,
+                            spacing_widget = {
+                                {
+                                    color = '#666',
+                                    forced_width = 5,
+                                    shape        = gears.shape.circle,
+                                    widget       = wibox.widget.separator
+                                },
+                                valign = "center",
+                                halign = "center",
+                                widget = wibox.container.place,
+                            },
+                            mydf,
+                            myloadavg,
+                                     },
+                        mybattery and {mybattery},
+                        {
+                            mytextclock,
+                    }),
                     wibox.widget.systray(),
-                    
                 },
             },
         }
