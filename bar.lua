@@ -31,7 +31,7 @@ if not emsg then
                 discharging='🔋',
                 charging='⚡',
                 fully='🔌',
-                unknown='?',
+                unknown='? ',
             }
             local bat_now = {
                 present      = "N/A",
@@ -43,7 +43,7 @@ if not emsg then
                 voltage      = "N/A",
                 percentage   = "N/A",
                 capacity     = "N/A",
-                icon         = "N/A"
+                icon         = "N/A",
             }
 
             for k, v in string.gmatch(stdout, '([%a]+[%a|-]+):%s*([%a|%d]+[,|%a|%d]-)') do
@@ -62,13 +62,17 @@ if not emsg then
 
             local state_icon = icons[bat_now.state]
             if not state_icon then state_icon = bat_now.state end
-            local styling = "%s"
-            if bat_now.percentage < 20 then
-                styling = "<span background='orange' foreground='black'>%s</span>"
-            elseif bat_now.percentage < 10 then
-                styling = "<span background='red' foreground='black'>%s</span>"
+            local styling = "%s%s"
+            if bat_now.state == 'discharging' or bat_now.state == 'unknown' then
+                if bat_now.percentage <= 10 then
+                    styling = "%s<span background='red' foreground='black'>%s</span>"
+                elseif bat_now.percentage <= 20 then
+                    styling = "%s<span background='orange' foreground='black'>%s</span>"
+                end
             end
-            widget:set_markup_silently(string.format(styling, gears.string.xml_escape(string.format("%s%s%%", state_icon, bat_now.percentage))))
+            widget:set_markup_silently(string.format(styling,
+                                                     gears.string.xml_escape(state_icon),
+                                                     gears.string.xml_escape(string.format("%2d%%", bat_now.percentage))))
         end
     )
 end
