@@ -65,9 +65,9 @@ if not emsg then
             local styling = "%s%s"
             if bat_now.state == 'discharging' or bat_now.state == 'unknown' then
                 if bat_now.percentage <= 10 then
-                    styling = "%s<span background='red' foreground='black'>%s</span>"
+                    styling = "%s<span background='red' font_weight='bold' foreground='black'>%s</span>"
                 elseif bat_now.percentage <= 20 then
-                    styling = "%s<span background='orange' foreground='black'>%s</span>"
+                    styling = "%s<span background='orange' font_weight='bold' foreground='black'>%s</span>"
                 end
             end
             widget:set_markup_silently(string.format(styling,
