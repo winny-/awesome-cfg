@@ -187,7 +187,7 @@ globalkeys = gears.table.join(
            awful.tag.viewmore(awful.screen.focused().tags, awful.screen.focused())
          end
             end,
-       'toggle visibility of all tags'),
+       'toggle visibility of all tags', 'tag'),
   bind_mod('Shift', '0', function()
              if client.focus then
                if #awful.screen.focused().tags == #client.focus:tags() then
@@ -208,7 +208,7 @@ globalkeys = gears.table.join(
                end
              end
                       end,
-           'invert visibility of client on all tags')
+           'toggle visibility of client on all tags', 'tag')
 )
 
 for i = 1, 9 do
