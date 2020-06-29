@@ -6,6 +6,8 @@ local lain = require 'lain'
 
 local defaults = require './defaults'
 
+local actions = require './actions'
+
 local function bind_mod(modifiers, key, cb, description, group)
   local modifiers_table = modifiers
   if type(modifiers) == 'string' then
@@ -23,36 +25,31 @@ end
 local globalkeys = gears.table.join(
   bind("slash", hotkeys_popup.show_help,
        'show help', 'awesome'),
-  bind("Tab", awful.tag.history.restore,
+  bind("Tab", actions.recenttag,
        'go back', 'tag'),
-  bind('n', function() awful.client.focus.byidx(1) end,
+  bind('n', actions.nextclient,
        'focus next by index', 'client'),
-  bind('p', function() awful.client.focus.byidx(-1) end,
+  bind('p', actions.prevclient,
        'focus previous by index', 'client'),
-  bind_mod('Shift', 'n', function () awful.client.swap.byidx(1) end,
+  bind_mod('Shift', 'n', actions.swapnextclient,
            'swap with next client by index', 'client'),
-  bind_mod('Shift', 'p', function () awful.client.swap.byidx(-1) end,
+  bind_mod('Shift', 'p', actions.swapprevclient,
            'swap with previous client by index', 'client'),
-  bind('o', function () awful.screen.focus_relative( 1) end,
+  bind('o', actions.nextscreen,
        'focus the next screen', 'screen'),
   bind('x', awful.client.urgent.jumpto,
        'jump to urgent client', 'client'),
-  bind('apostrophe', function()
-         awful.client.focus.history.previous()
-         if client.focus then
-           client.focus:raise()
-         end
-                     end,
+  bind('apostrophe', actions.recentclient,
        'go back', 'client'),
-  bind('Return', function() awful.spawn(defaults.terminal) end,
+  bind('Return', actions.terminal,
        'open a terminal', 'launcher'),
-  bind_mod('Control', 'r', awesome.restart,
+  bind_mod('Control', 'r', actions.restart,
            'reload awesome', 'awesome'),
-  bind_mod({'Shift', 'Control'}, 'Escape', awesome.quit,
+  bind_mod({'Shift', 'Control'}, 'Escape', actions.quit,
     'quit awesome', 'awesome'),
-  bind('f', function() awful.tag.incmwfact(defaults.master_width_factor_step) end,
+  bind('f', actions.increasemasterwidthfactor,
        'increase master width factor', 'layout'),
-  bind('b', function() awful.tag.incmwfact(-defaults.master_width_factor_step) end,
+  bind('b', actions.decreasemasterwidthfactor,
        'decrease master width factor', 'layout'),
   bind_mod('Shift', 'f', function() awful.tag.incnmaster(1, nil, true) end,
            'increase the number of master clients', 'layout'),
@@ -223,6 +220,13 @@ for i = 1, 9 do
                                   end,
              string.format('Focus the %dth client', i), 'client'))
 end
+
+local modal = require './modal'
+
+globalkeys = gears.table.join(
+    globalkeys,
+    awful.key({ 'Control' }, 'i', modal.manage)
+)
 
 return {
   global = globalkeys,

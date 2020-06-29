@@ -6,7 +6,7 @@ return {
     terminal = 'wxfce4-terminal',
     modkey = 'Mod4',
     theme = gears.filesystem.get_configuration_dir() .. 'my_theme/theme.lua',
-    layout = layouts[2],
+    layout = layouts.order[2],
     tags = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
     master_width_factor_step = 0.05,
     gap = 5,

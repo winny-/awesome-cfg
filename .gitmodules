@@ -4,3 +4,6 @@
 [submodule "dynamite"]
 	path = dynamite
 	url = git@gitlab.com:winny/dynamite.git
+[submodule "modalbind"]
+	path = modalbind
+	url = https://github.com/crater2150/awesome-modalbind

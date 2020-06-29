@@ -1,5 +1,6 @@
 local suit = require 'awful.layout.suit'
 local lain = require 'lain.layout'
+local gears = require 'gears'
 
 -- local dynamite = require 'dynamite'
 
@@ -21,18 +22,29 @@ local lain = require 'lain.layout'
 -- }
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
+local tiles = {
+    suit.tile,
+    suit.tile.bottom,
+    suit.spiral.dwindle,
+    suit.corner.nw,
+    lain.centerwork,
+}
+local grids = {
+    suit.fair,
+    suit.fair.horizontal,
+    lain.termfair,      
+}
+local monocle = suit.max
+local floating = suit.floating
 return {
-  suit.floating,
-  suit.tile,
-  suit.tile.bottom,
-  suit.fair,
-  suit.fair.horizontal,
-  suit.spiral.dwindle,
-  suit.max,
-  suit.magnifier,
-  suit.corner.nw,
-  lain.centerwork,
-  lain.cascade,
-  lain.termfair,
---  stack,
+    order=gears.table.join(
+        {floating},
+        tiles,
+        grids,
+        {monocle}
+    ),
+    tiles=tiles,
+    grids=grids,
+    monocle=monocle,
+    floating=floating,
 }

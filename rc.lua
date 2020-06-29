@@ -20,7 +20,7 @@ local helper = require './helper'
 beautiful.init(defaults.theme)
 local bar = require './bar'
 
-awful.layout.layouts = require './layouts'
+awful.layout.layouts = require('./layouts').order
 awful.rules.rules = require './rules'
 
 awful.screen.connect_for_each_screen(helper.set_wallpaper) -- Set wallpaper on each screen
@@ -29,7 +29,8 @@ awful.screen.connect_for_each_screen(function(s) -- set up tags on each screen
 end)
 awful.screen.connect_for_each_screen(bar.main) -- set up a bar on each screen
 
-menubar.utils.terminal = defaults.terminal -- Set the terminal for applications that require it
+-- Set the terminal for applications that require it
+menubar.utils.terminal = defaults.terminal
 
 root.keys(keys.global)
 root.buttons(buttons.global)
