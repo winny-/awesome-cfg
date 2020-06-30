@@ -1,3 +1,4 @@
+local gears = require 'gears'
 local modalbind = require './modalbind'
 local actions = require './actions'
 
@@ -8,6 +9,29 @@ modalbind.default_keys = {
     {'Escape', modalbind.close_box, 'Close Modal'},
     {'Return', modalbind.close_box, 'Close Modal'},
 }
+
+local tagmap = {}
+table.insert(tagmap, {'separator', 'Select a Tag'})
+tagmap = gears.table.join(
+    tagmap,
+    {
+        {'n', actions.nexttag, 'select next tag (by index)'},
+        {'p', actions.prevtag, 'select previous tag (by index)'},
+    }
+)
+for i = 1, 9 do
+    table.insert(tagmap, {tostring(i), actions.makeselecttag(i), 'Select tag ' .. i})
+end
+table.insert(tagmap, {'separator', 'Toggle a Tag'})
+for i = 1, 9 do
+    tagmap = gears.table.join(
+        tagmap,
+        {
+            {'F' .. i, actions.maketoggletag(i), 'Toggle tag ' .. i}
+        }
+    )
+end
+
 
 local managemap = {
     {'separator', 'Spawn'},
@@ -24,6 +48,7 @@ local managemap = {
     {'L', actions.recenttag, 'focus recent tag'},
     {'Left', actions.prevtag, 'focus next tag (by index)'},
     {'Right', actions.nexttag, 'focus previous tag (by index)'},
+    {'g', function() modalbind.grab{keymap=tagmap, name='Manage Tags'} end, 'Manage Tags'},
     {'separator', 'Layout'},
     {'t', actions.cycletile, 'Cycle between tile layouts'},
     {'m', actions.togglemonocle, 'Toggle monocle layout'},

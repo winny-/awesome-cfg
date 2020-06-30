@@ -1,6 +1,7 @@
 -- common actions for keybinds and other things
 
 local awful = require 'awful'
+local gears = require 'gears'
 local defaults = require './defaults'
 local layouts = require './layouts'
 local naughty = require 'naughty'
@@ -14,7 +15,37 @@ local function with_client(fn)
     end
 end
 
-return {
+local function makeselecttag(idx)
+    return function()
+        local screen = awful.screen.focused()
+        local tag = screen.tags[idx]
+        if tag then
+            tag:view_only()
+        end
+    end
+end
+
+local function maketoggletag(idx)
+    return function()
+        local screen = awful.screen.focused()
+        local tag = screen.tags[idx]
+        if tag then
+            awful.tag.viewtoggle(tag)
+        end
+    end
+end
+
+local selecttagfns = {};
+for i = 1, 9 do
+    selecttagfns['selecttag' .. i] = makeselecttag(i)
+end
+
+local toggletagfns = {};
+for i = 1, 9 do
+    toggletagfns['toggletag' .. i] = maketoggletag(i)
+end
+
+return gears.table.join({
     nextclient=function() awful.client.focus.byidx(1) end,
     prevclient=function() awful.client.focus.byidx(-1) end,
     swapnextclient=function() awful.client.swap.byidx(1) end,
@@ -48,4 +79,8 @@ return {
         local tag = util.gettagdwim()
         tag.layout = layouts.monocle
     end,
-}
+    makeselecttag=makeselecttag,
+    maketoggletag=maketoggletag,
+                        },
+    selecttagfns,
+    toggletagfns)
