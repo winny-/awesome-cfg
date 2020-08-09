@@ -45,6 +45,21 @@ for i = 1, 9 do
     toggletagfns['toggletag' .. i] = maketoggletag(i)
 end
 
+local function makeselectclient(idx)
+    return function()
+        local c = awful.client.visible(awful.screen.focused())[idx]
+        if c then
+            c:jump_to()
+            c:raise()
+        end
+    end
+end
+
+local selectclientfns = {}
+for i = 1, 9 do
+    selectclientfns['selectclient' .. i] = makeselectclient(i)
+end
+
 return gears.table.join({
     nextclient=function() awful.client.focus.byidx(1) end,
     prevclient=function() awful.client.focus.byidx(-1) end,
@@ -85,6 +100,8 @@ return gears.table.join({
     end,
     makeselecttag=makeselecttag,
     maketoggletag=maketoggletag,
+    makeselectclient=makeselectclient,
                         },
     selecttagfns,
-    toggletagfns)
+    toggletagfns,
+    selectclientfns)

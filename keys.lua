@@ -199,13 +199,7 @@ globalkeys = gears.table.join(
 for i = 1, 9 do
   globalkeys = gears.table.join(
     globalkeys,
-    bind_mod('Mod1', tostring(i), function()
-               local c = awful.client.visible()[i]
-               if c then
-                 c:jump_to()
-                 c:raise()
-               end
-                                  end,
+    bind_mod('Mod1', tostring(i), actions.makeselectclient(i),
              string.format('Focus the %dth client', i), 'client'))
 end
 

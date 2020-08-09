@@ -33,10 +33,22 @@ for i = 1, 9 do
 end
 
 
-local managemap = {
+local managemap = gears.table.join({
     {'separator', 'Spawn'},
     {'c', actions.terminal, 'spawn terminal'},
     {'separator', 'Client'},
+})
+
+for i = 1, 9 do
+    managemap = gears.table.join(
+        managemap,
+        {
+            {tostring(i), actions.makeselectclient(i), 'Focus client ' .. i},
+        }
+    )
+end
+
+managemap = gears.table.join(managemap, {
     {'n', actions.nextclient,'focus next (by index)'},
     {'p', actions.prevclient, 'focus previous (by index)'},
     {'N', actions.swapnextclient, 'swap next (by index)'},
@@ -59,7 +71,7 @@ local managemap = {
     {'O', actions.moveclienttoscreen, 'Move client to next screen and focus the screen'},
     {'separator', 'Awesome'},
     {'\\', actions.restart, 'restart Awesome'},
-}
+})
 
 return {
     manage=function() modalbind.grab{keymap=managemap, name='Manage Awesome',} end,
