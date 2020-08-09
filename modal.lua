@@ -43,7 +43,9 @@ local managemap = {
     {'P', actions.swapprevclient, 'swap prev (by index)'},
     {'l', actions.recentclient, 'focus recent client'},
     {'k', actions.closeclient, 'close client'},
-    {'z', actions.togglefullscreen, 'toggle fullscreen'},
+    {'f', actions.togglefullscreen, 'toggle fullscreen'},
+    {'z', actions.minimizeclient, 'minimize'},
+    {'x', actions.swapmasterclient, 'swap with master'},
     {'separator', 'Tag'},
     {'L', actions.recenttag, 'focus recent tag'},
     {'Left', actions.prevtag, 'focus next tag (by index)'},
@@ -52,6 +54,11 @@ local managemap = {
     {'separator', 'Layout'},
     {'t', actions.cycletile, 'Cycle between tile layouts'},
     {'m', actions.togglemonocle, 'Toggle monocle layout'},
+    {'separator', 'Screen'},
+    {'o', actions.nextscreen, 'Focus next screen'},
+    {'O', actions.moveclienttoscreen, 'Move client to next screen and focus the screen'},
+    {'separator', 'Awesome'},
+    {'\\', actions.restart, 'restart Awesome'},
 }
 
 return {
