@@ -2,6 +2,8 @@ local gears = require 'gears'
 local modalbind = require './modalbind'
 local actions = require './actions'
 
+
+
 modalbind.init()
 
 modalbind.default_keys = {
@@ -9,6 +11,8 @@ modalbind.default_keys = {
     {'Escape', modalbind.close_box, 'Close Modal'},
     {'Return', modalbind.close_box, 'Close Modal'},
 }
+
+
 
 local tagmap = {}
 table.insert(tagmap, {'separator', 'Select a Tag'})
@@ -19,9 +23,11 @@ tagmap = gears.table.join(
         {'p', actions.prevtag, 'select previous tag (by index)'},
     }
 )
+
 for i = 1, 9 do
     table.insert(tagmap, {tostring(i), actions.makeselecttag(i), 'Select tag ' .. i})
 end
+
 table.insert(tagmap, {'separator', 'Toggle a Tag'})
 for i = 1, 9 do
     tagmap = gears.table.join(
@@ -32,10 +38,20 @@ for i = 1, 9 do
     )
 end
 
+
+
+local launchmap = {
+    {'c', actions.terminal, 'spawn terminal'},
+    {'d', actions.dmenu, 'dmenu'},
+    {'e', actions.editor, 'spawn editor'},
+    {'w', actions.browser, 'spawn browser'},
+    {'v', actions.mixer, 'spawn mixer'},
+}
+
+
 
 local managemap = gears.table.join({
-    {'separator', 'Spawn'},
-    {'c', actions.terminal, 'spawn terminal'},
+    {'c', function() modalbind.grab {keymap=launchmap, name='Launch'} end, 'Launch Map'},
     {'separator', 'Client'},
 })
 
@@ -72,6 +88,8 @@ managemap = gears.table.join(managemap, {
     {'separator', 'Awesome'},
     {'\\', actions.restart, 'restart Awesome'},
 })
+
+
 
 return {
     manage=function() modalbind.grab{keymap=managemap, name='Manage Awesome',} end,

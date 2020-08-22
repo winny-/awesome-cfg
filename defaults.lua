@@ -4,6 +4,10 @@ local layouts = require './layouts'
 return {
     editor = os.getenv('EDITOR') or 'emacsclient -c',
     terminal = 'wxfce4-terminal',
+    mixer = 'pavucontrol',
+    browser = 'qutebrowser',
+    editor = 'emacsclient -c',
+    dmenu = 'rofi -show run -modi run,drun,window',
     modkey = 'Mod4',
     theme = gears.filesystem.get_configuration_dir() .. 'my_theme/theme.lua',
     layout = layouts.order[2],
