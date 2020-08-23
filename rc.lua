@@ -1,23 +1,26 @@
 require './error_handling'
+local defaults = require './defaults'
 
--- Standard awesome library
+local beautiful = require("beautiful") -- Theme handling library
+beautiful.init(defaults.theme)
+
+-- Standard awesoem library
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
 local wibox = require("wibox") -- Widget and layout library
-local beautiful = require("beautiful") -- Theme handling library
 local naughty = require("naughty") -- Notification library
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 
-local defaults = require './defaults'
+
 local keys = require './keys'
 local buttons = require './buttons'
 local signals = require './signals'
 local helper = require './helper'
 
 
-beautiful.init(defaults.theme)
+
 local bar = require './bar'
 
 awful.layout.layouts = require('./layouts').order

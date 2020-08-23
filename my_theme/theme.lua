@@ -35,6 +35,14 @@ theme.border_normal = "#444444"
 theme.border_focus  = "#ff0000"
 theme.border_marked = "#91231c"
 
+-- For modalbind.  See ../modalbind/README.md or
+-- https://github.com/crater2150/awesome-modalbind )
+theme.modalbind_font = theme.font
+theme.modebox_fg = theme.fg_focus
+theme.modebox_bg = theme.bg_focus
+theme.modebox_border = theme.modebox_bg
+theme.modebox_border_width = dpi(10)
+
 -- There are other variable sets
 -- overriding the default one when
 -- defined, the sets are:
