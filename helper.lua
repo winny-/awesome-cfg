@@ -25,4 +25,11 @@ return {
             gears.wallpaper.maximized(wallpaper, s, true)
         end
     end,
+    manage_titlebar=function(c)
+        if c.floating and not c.requests_no_titlebar then
+            awful.titlebar.show(c)
+        else
+            awful.titlebar.hide(c)
+        end
+    end,
 }

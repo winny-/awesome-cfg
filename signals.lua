@@ -18,6 +18,7 @@ local callbacks = {
             -- Prevent clients from being unreachable after screen count changes.
             awful.placement.no_offscreen(c)
         end
+        helper.manage_titlebar(c)
     end,
     request_titlebars_cb = function(c)
         -- buttons for the titlebar
@@ -59,7 +60,7 @@ local callbacks = {
     end,
     unfocus_cb = function(c)
         c.border_color = beautiful.border_normal
-    end
+    end,
 }
 
 local function connect()
@@ -68,6 +69,15 @@ local function connect()
 
     -- Add a titlebar if titlebars_enabled is set to true in the rules.
     client.connect_signal("request::titlebars", callbacks.request_titlebars_cb)
+    -- And ensure floating clients get the titlebar
+    client.connect_signal('property::floating', helper.manage_titlebar)
+    -- And ensure floating tags get the titlebar
+    awful.tag.attached_connect_signal(nil, "property::layout", function (t)
+                                          local float = t.layout.name == "floating"
+                                          for _,c in pairs(t:clients()) do
+                                              c.floating = float
+                                          end
+    end)
 
     -- Enable sloppy focus, so that focus follows mouse.
     client.connect_signal("mouse::enter", callbacks.mouse_enter_cb)
