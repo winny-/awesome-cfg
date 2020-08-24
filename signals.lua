@@ -18,7 +18,6 @@ local callbacks = {
             -- Prevent clients from being unreachable after screen count changes.
             awful.placement.no_offscreen(c)
         end
-        helper.manage_titlebar(c)
     end,
     request_titlebars_cb = function(c)
         -- buttons for the titlebar
