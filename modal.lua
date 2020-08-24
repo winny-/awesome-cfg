@@ -21,6 +21,7 @@ tagmap = gears.table.join(
     {
         {'n', actions.nexttag, 'select next tag (by index)'},
         {'p', actions.prevtag, 'select previous tag (by index)'},
+        {'l', actions.recenttag, 'focus recent tag'},
     }
 )
 
@@ -46,6 +47,7 @@ local launchmap = {
     {'e', actions.editor, 'spawn editor'},
     {'w', actions.browser, 'spawn browser'},
     {'v', actions.mixer, 'spawn mixer'},
+    {'S', actions.selectsink, 'switch pulseaudio sink'},
 }
 
 
@@ -74,6 +76,7 @@ managemap = gears.table.join(managemap, {
     {'f', actions.togglefullscreen, 'toggle fullscreen'},
     {'z', actions.minimizeclient, 'minimize'},
     {'x', actions.swapmasterclient, 'swap with master'},
+    {'w', actions.selectclient, 'select client'},
     {'separator', 'Tag'},
     {'L', actions.recenttag, 'focus recent tag'},
     {'Left', actions.prevtag, 'focus next tag (by index)'},
