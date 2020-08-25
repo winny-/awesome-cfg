@@ -26,7 +26,7 @@ return {
         end
     end,
     manage_titlebar=function(c)
-        if c.floating and not c.requests_no_titlebar then
+        if c.floating and not (c.requests_no_titlebar or c.fullscreen) then
             awful.titlebar.show(c)
         else
             awful.titlebar.hide(c)
