@@ -66,6 +66,11 @@ return gears.table.join({
     swapnextclient=function() awful.client.swap.byidx(1) end,
     swapprevclient=function() awful.client.swap.byidx(-1) end,
     swapmasterclient=with_client(function(c) c:swap(awful.client.getmaster()) end),
+    pushmasterclient=with_client(function(c)
+            if awful.client.getmaster() ~= c then
+                awful.client.setmaster(c)
+            end
+    end),
     minimizeclient=with_client(function(c) c.minimized = true end),
     recenttag=awful.tag.history.restore,
     nexttag=awful.tag.viewnext,

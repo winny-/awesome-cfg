@@ -1,4 +1,5 @@
 local gears = require 'gears'
+local awful = require 'awful'
 local modalbind = require './modalbind'
 local actions = require './actions'
 
@@ -46,6 +47,7 @@ local launchmap = {
     {'d', actions.dmenu, 'dmenu'},
     {'e', actions.editor, 'spawn editor'},
     {'w', actions.browser, 'spawn browser'},
+    {'W', function() awful.spawn('qutebrowser -T') end, 'spawn browser (temp session)'},
     {'v', actions.mixer, 'spawn mixer'},
     {'S', actions.selectsink, 'switch pulseaudio sink'},
 }
@@ -75,7 +77,8 @@ managemap = gears.table.join(managemap, {
     {'k', actions.closeclient, 'close client'},
     {'f', actions.togglefullscreen, 'toggle fullscreen'},
     {'z', actions.minimizeclient, 'minimize'},
-    {'x', actions.swapmasterclient, 'swap with master'},
+    {'x', actions.pushmasterclient, 'push master'},
+    {'X', actions.swapmasterclient, 'swap master'},
     {'w', actions.selectclient, 'select client'},
     {'separator', 'Tag'},
     {'L', actions.recenttag, 'focus recent tag'},
