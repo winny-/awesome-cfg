@@ -10,6 +10,8 @@
   - [[file:defaults.lua][defaults.lua]] :: Easy tunables
   - [[file:helper.lua][helper.lua]] :: Utility
   - [[file:keys.lua][keys.lua]] :: Keyboard shortcuts
+  - [[file:modal.lua][modal.lua]] :: Modal commands (think screen/stumpwm/emacs-like prefix
+       commands)
   - [[file:buttons.lua][buttons.lua]] :: Mouse shortcuts
   - [[file:rules.lua][rules.lua]] :: Window placement rules
   - [[file:signals.lua][signals.lua]] :: Signals for things such as new windows, focus
