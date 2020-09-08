@@ -5,6 +5,7 @@ local wibox = require 'wibox'
 
 local buttons = require './buttons'
 local helper = require './helper'
+local layouts = require './layouts'
 
 local callbacks = {
     manage_cb = function (c)
@@ -70,6 +71,17 @@ local function connect()
     client.connect_signal("request::titlebars", callbacks.request_titlebars_cb)
     -- And ensure floating clients get the titlebar
     client.connect_signal('property::floating', helper.manage_titlebar)
+
+    -- Make floaters stack on top when popped out of tile layout.  Without
+    -- programs such as Qutebrowser will automatically lower themself below
+    -- other clients.
+    client.connect_signal('property::floating', function(c)
+                              local ft = c.first_tag
+                              if ft ~= nil and ft.layout ~= layouts.floating then
+                                  c:raise()
+                              end
+                                                end)
+
     -- And ensure floating tags get the titlebar
     awful.tag.attached_connect_signal(nil, "property::layout", function (t)
                                           local float = t.layout.name == "floating"
