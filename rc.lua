@@ -4,7 +4,7 @@ local defaults = require './defaults'
 local beautiful = require("beautiful") -- Theme handling library
 beautiful.init(defaults.theme)
 
--- Standard awesoem library
+-- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
