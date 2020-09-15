@@ -89,6 +89,7 @@ return gears.table.join({
     browser=function() awful.spawn(defaults.browser) end,
     mixer=function() awful.spawn(defaults.mixer) end,
     selectsink=function() awful.spawn('rofi-switch-sink') end,
+    bluetoothcontrol=function() awful.spawn('rofi-bluetooth-control') end,
     dmenu=function() awful.spawn(defaults.dmenu) end,
     selectclient=function() awful.spawn('rofi -show window') end,
     restart=awesome.restart,
