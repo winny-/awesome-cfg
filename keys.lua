@@ -96,7 +96,9 @@ local clientkeys = gears.table.join(
   awful.key({ defaults.modkey,           }, "a",      function (c) c:move_to_screen()               end,
     {description = "move to screen", group = "client"}),
   awful.key({ defaults.modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
-    {description = "toggle keep on top", group = "client"}),
+      {description = "toggle keep on top", group = "client"}),
+  awful.key({ defaults. modkey,          }, "c",      function (c) c.sticky = not c.sticky          end,
+      {description = "toggle sticky", group = "client"}),
   awful.key({ defaults.modkey,           }, "z",
     function (c)
       -- The client currently has the input focus, so it cannot be
