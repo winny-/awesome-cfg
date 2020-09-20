@@ -50,7 +50,8 @@ local launchmap = {
     {'W', function() awful.spawn('qutebrowser -T') end, 'spawn browser (temp session)'},
     {'v', actions.mixer, 'spawn mixer'},
     {'S', actions.selectsink, 'switch pulseaudio sink'},
-    {'b', actions.bluetoothcontrol, 'control bluetooth'},
+    {'b', actions.bluetoothcontrol, 'control Bluetooth'},
+    {'p', actions.passwordmanager, 'type passwords'},
 }
 
 
