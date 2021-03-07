@@ -16,7 +16,10 @@ local myloadavg = awful.widget.watch("cut -f1-3 -d' ' < /proc/loadavg", 1)
 -- XXX figure out why
 -- df -h --output=avail / | awk 'END { printf(\"%s\", $1); }'
 -- does not work
-local mydf = awful.widget.watch("rootdf", 5) 
+-- local mydf = awful.widget.watch("/home/winston/.config/awesome/bin/awesome-df", 5)
+local AWESOME_DF = gears.filesystem.get_configuration_dir() .. '/bin/awesome-df'
+local rootdf = awful.widget.watch(AWESOME_DF .. ' /', 5)
+local homedf = awful.widget.watch(AWESOME_DF .. ' /home', 5)
 
 -- battery infos from freedesktop upower
 local mybattery = nil
@@ -78,7 +81,7 @@ if not emsg then
 end
 
 
-local function only_on_primary(widget) 
+local function only_on_primary(widget)
     return awful.widget.only_on_screen(widget, awful.screen.primary)
 end
 
@@ -175,7 +178,8 @@ return {
                                 halign = "center",
                                 widget = wibox.container.place,
                             },
-                            mydf,
+                            rootdf,
+                            homedf,
                             myloadavg,
                                      },
                         mybattery and {mybattery},
