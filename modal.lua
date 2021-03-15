@@ -22,7 +22,7 @@ tagmap = gears.table.join(
     {
         {'n', actions.nexttag, 'select next tag (by index)'},
         {'p', actions.prevtag, 'select previous tag (by index)'},
-        {'l', actions.recenttag, 'focus recent tag'},
+        {'g', actions.recenttag, 'focus recent tag'},
     }
 )
 
@@ -75,7 +75,7 @@ managemap = gears.table.join(managemap, {
     {'p', actions.prevclient, 'focus previous (by index)'},
     {'N', actions.swapnextclient, 'swap next (by index)'},
     {'P', actions.swapprevclient, 'swap prev (by index)'},
-    {'l', actions.recentclient, 'focus recent client'},
+    {'i', actions.recentclient, 'focus recent client'},
     {'k', actions.closeclient, 'close client'},
     {'f', actions.togglefullscreen, 'toggle fullscreen'},
     {'z', actions.minimizeclient, 'minimize'},
@@ -83,7 +83,6 @@ managemap = gears.table.join(managemap, {
     {'X', actions.swapmasterclient, 'swap master'},
     {'w', actions.selectclient, 'select client'},
     {'separator', 'Tag'},
-    {'L', actions.recenttag, 'focus recent tag'},
     {'Left', actions.prevtag, 'focus next tag (by index)'},
     {'Right', actions.nexttag, 'focus previous tag (by index)'},
     {'g', function() modalbind.grab{keymap=tagmap, name='Manage Tags'} end, 'Manage Tags'},

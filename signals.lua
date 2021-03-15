@@ -75,20 +75,27 @@ local function connect()
     -- Make floaters stack on top when popped out of tile layout.  Without
     -- programs such as Qutebrowser will automatically lower themself below
     -- other clients.
-    client.connect_signal('property::floating', function(c)
-                              local ft = c.first_tag
-                              if ft ~= nil and ft.layout ~= layouts.floating then
-                                  c:raise()
-                              end
-                                                end)
+    client.connect_signal(
+        'property::floating',
+        function(c)
+            local ft = c.first_tag
+            if ft ~= nil and ft.layout ~= layouts.floating then
+                c:raise()
+            end
+        end
+    )
 
     -- And ensure floating tags get the titlebar
-    awful.tag.attached_connect_signal(nil, "property::layout", function (t)
-                                          local float = t.layout.name == "floating"
-                                          for _,c in pairs(t:clients()) do
-                                              c.floating = float
-                                          end
-    end)
+    awful.tag.attached_connect_signal(
+        nil,
+        "property::layout",
+        function (t)
+            local float = t.layout.name == "floating"
+            for _,c in pairs(t:clients()) do
+                c.floating = float
+            end
+        end
+    )
 
     -- Enable sloppy focus, so that focus follows mouse.
     client.connect_signal("mouse::enter", callbacks.mouse_enter_cb)
