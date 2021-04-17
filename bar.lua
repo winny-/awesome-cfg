@@ -182,17 +182,6 @@ return {
                     gears.table.join({
                             layout = wibox.layout.fixed.horizontal,
                             spacing = 20,
-                            spacing_widget = {
-                                {
-                                    color = '#666',
-                                    forced_width = 5,
-                                    shape        = gears.shape.circle,
-                                    widget       = wibox.widget.separator
-                                },
-                                valign = "center",
-                                halign = "center",
-                                widget = wibox.container.place,
-                            },
                             rootdf,
                             homedf,
                             myloadavg,
@@ -200,8 +189,9 @@ return {
                         mybattery and {mybattery},
                         {
                             mytextclock,
+                            wibox.widget.systray(),
                     }),
-                    wibox.widget.systray(),
+
                 },
             },
         }
