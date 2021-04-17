@@ -7,7 +7,8 @@ local helper = require './helper'
 
 local lain = require './lain'
 
-local mytextclock = wibox.widget.textclock('<span font_weight="normal">%a %b %d <b>%T</b></span>' ,1)
+-- See https://developer.gnome.org/pygtk/stable/pango-markup-language.html
+local mytextclock = wibox.widget.textclock('<span weight="normal">%a %b %d <span weight="heavy">%H:%M</span>:%S</span>' ,1)
 local mycalendar = awful.widget.calendar_popup.month()
 mycalendar:attach(mytextclock, 'tr', {on_hover=false})
 
