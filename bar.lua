@@ -2,6 +2,7 @@ local wibox = require 'wibox'
 local awful = require 'awful'
 local gears = require 'gears'
 
+local util = require './util'
 local defaults = require './defaults'
 local helper = require './helper'
 
@@ -50,33 +51,40 @@ if not emsg then
                 icon         = "N/A",
             }
 
-            for k, v in string.gmatch(stdout, '([%a]+[%a|-]+):%s*([%a|%d]+[,|%a|%d]-)') do
-                if     k == "present"       then bat_now.present      = v
-                elseif k == "state"         then bat_now.state        = v
-                elseif k == "warning-level" then bat_now.warninglevel = v
-                elseif k == "energy"        then bat_now.energy       = string.gsub(v, ",", ".") -- Wh
-                elseif k == "energy-full"   then bat_now.energyfull   = string.gsub(v, ",", ".") -- Wh
-                elseif k == "energy-rate"   then bat_now.energyrate   = string.gsub(v, ",", ".") -- W
-                elseif k == "voltage"       then bat_now.voltage      = string.gsub(v, ",", ".") -- V
-                elseif k == "percentage"    then bat_now.percentage   = tonumber(v)              -- %
-                elseif k == "capacity"      then bat_now.capacity     = string.gsub(v, ",", ".") -- %
-                elseif k == "icon-name"     then bat_now.icon         = v
+            for k, v in string.gmatch(stdout, '([%a]+[%a|-]+):%s*([%a|%d]+[%a|%d|\\.]*)') do
+                if     k == "present"       then bat_now.present       = v
+                elseif k == "state"         then bat_now.state         = v
+                elseif k == "warning-level" then bat_now.warninglevel  = v
+                elseif k == "energy"        then bat_now.energy        = tonumber((string.gsub(v, ",", "."))) -- Wh
+                elseif k == "energy-full"   then bat_now.energyfull    = tonumber((string.gsub(v, ",", "."))) -- Wh
+                elseif k == "energy-rate"   then bat_now.energyrate    = tonumber((string.gsub(v, ",", "."))) -- W
+                elseif k == "voltage"       then bat_now.voltage       = tonumber((string.gsub(v, ",", "."))) -- V
+                elseif k == "percentage"    then bat_now.percentage    = tonumber(v)              -- %
+                elseif k == "capacity"      then bat_now.capacity      = tonumber((string.gsub(v, ",", "."))) -- %
+                elseif k == "icon-name"     then bat_now.icon          = v
                 end
             end
 
             local state_icon = icons[bat_now.state]
             if not state_icon then state_icon = bat_now.state end
-            local styling = "%s%s"
+            local styling = "%s%s%s"
             if bat_now.state == 'discharging' or bat_now.state == 'unknown' then
                 if bat_now.percentage <= 10 then
-                    styling = "%s<span background='red' font_weight='bold' foreground='black'>%s</span>"
+                    styling = "%s<span background='red' font_weight='bold' foreground='black'>%s</span>%s"
                 elseif bat_now.percentage <= 20 then
-                    styling = "%s<span background='orange' font_weight='bold' foreground='black'>%s</span>"
+                    styling = "%s<span background='orange' font_weight='bold' foreground='black'>%s</span>%s"
                 end
+            end
+            local eta = ''
+            if bat_now.state == 'discharging' or bat_now.state == 'unknown' then
+                eta = ' ' .. util.minutes2hm(bat_now.energy / bat_now.energyrate * 60)
+            elseif bat_now.state == 'charging' then
+                eta = ' ' .. util.minutes2hm((bat_now.energyfull - bat_now.energy) / bat_now.energyrate * 60)
             end
             widget:set_markup_silently(string.format(styling,
                                                      gears.string.xml_escape(state_icon),
-                                                     gears.string.xml_escape(string.format("%2d%%", bat_now.percentage))))
+                                                     gears.string.xml_escape(string.format("%2d%%", bat_now.percentage)),
+                                                     gears.string.xml_escape(eta)))
         end
     )
 end
