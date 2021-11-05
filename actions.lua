@@ -90,7 +90,7 @@ return gears.table.join({
     mixer=function() awful.spawn(defaults.mixer) end,
     selectsink=function() awful.spawn('rofi-switch-sink') end,
     bluetoothcontrol=function() awful.spawn('rofi-bluetooth-control') end,
-    passwordmanager=function() awful.spawn('rofi-pass') end,
+    passwordmanager=function() awful.spawn('rofi-pass --last-used') end,
     dmenu=function() awful.spawn(defaults.dmenu) end,
     selectclient=function() awful.spawn('rofi -show window') end,
     restart=awesome.restart,
