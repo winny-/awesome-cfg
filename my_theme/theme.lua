@@ -11,8 +11,8 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-local font_size = 10
-local font_family = 'monospace'
+local font_size = 11
+local font_family = 'Sans Serif'
 
 theme.font          = string.format("%s %d", font_family, font_size)
 theme.tasklist_font_minimized = string.format("%s Italic %d", font_family, font_size)
@@ -32,7 +32,7 @@ theme.fg_minimize   = "#ffffff"
 theme.useless_gap   = dpi(0)
 theme.border_width  = dpi(1)
 theme.border_normal = "#444444"
-theme.border_focus  = "#ff0000"
+theme.border_focus  = "#aa0000"
 theme.border_marked = "#91231c"
 
 -- For modalbind.  See ../modalbind/README.md or

@@ -3,7 +3,7 @@ local layouts = require './layouts'
 
 return {
     editor = os.getenv('EDITOR') or 'emacsclient -c',
-    terminal = 'wxfce4-terminal',
+    terminal = 'xfce4-terminal',
     mixer = 'pavucontrol',
     browser = 'qutebrowser',
     editor = 'emacsclient -c',

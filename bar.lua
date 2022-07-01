@@ -21,7 +21,9 @@ local myloadavg = awful.widget.watch("cut -f1-3 -d' ' < /proc/loadavg", 1)
 -- local mydf = awful.widget.watch("/home/winston/.config/awesome/bin/awesome-df", 5)
 local AWESOME_DF = gears.filesystem.get_configuration_dir() .. '/bin/awesome-df'
 local rootdf = awful.widget.watch(AWESOME_DF .. ' /', 5)
-local homedf = awful.widget.watch(AWESOME_DF .. ' /home', 5)
+
+-- If /home is on a different partition...
+--local homedf = awful.widget.watch(AWESOME_DF .. ' /home', 5)
 
 -- battery infos from freedesktop upower
 local mybattery = nil
