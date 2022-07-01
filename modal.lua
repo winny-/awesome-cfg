@@ -79,6 +79,7 @@ managemap = gears.table.join(managemap, {
     {'k', actions.closeclient, 'close client'},
     {'f', actions.togglefullscreen, 'toggle fullscreen'},
     {'z', actions.minimizeclient, 'minimize'},
+    {'Z', actions.restorerandom, 'unminimized random client on screen'},
     {'x', actions.pushmasterclient, 'push master'},
     {'X', actions.swapmasterclient, 'swap master'},
     {'w', actions.selectclient, 'select client'},

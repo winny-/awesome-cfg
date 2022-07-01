@@ -67,16 +67,8 @@ local globalkeys = gears.table.join(
   awful.key({ defaults.modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
     {description = "select previous", group = "layout"}),
 
-  awful.key({ defaults.modkey, "Control" }, "z",
-    function ()
-      local c = awful.client.restore()
-      -- Focus restored client
-      if c then
-        client.focus = c
-        c:raise()
-      end
-    end,
-    {description = "restore minimized", group = "client"})
+  awful.key({ defaults.modkey, "Control" }, "z", actions.restorerandom,
+    {description = "restore random minimized on current screen", group = "client"})
 
 )
 
