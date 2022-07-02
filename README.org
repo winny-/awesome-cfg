@@ -1,19 +1,36 @@
 #+title: My Awesome Config
+#+startup: indent
+
+* Features
+** Modal binds (like emacs, ratpoison, stumpwm)
+
+Keyboard chorded modal.  Type =C-i c c= to open a terminal.  Type =C-i c w= to
+open a web browser.  Type =C-i 1= to focus client index one.  Type =C-i g 1= to
+focus workspace index one.  See [[file:modal.lua][modal.lua]] for a complete list of bindings.
+
+** Gaps
+
+Gaps support if you want it.
+
+** Cleaner codebase
+
+Sections of the configuration are split up into many files.  This helps keep
+the lua easy to read and organized by usage.
+
 * Layout
+In general ~require './file'~ should not run code, only import
+functions. As such every relative require in =rc.lua= should be used
+in some sort of function application.
 
-  In general ~require './file'~ should not run code, only import
-  functions. As such every relative require in =rc.lua= should be used
-  in some sort of function application.
-
-  - [[file:rc.lua][rc.lua]] :: The config entrypoint
-  - [[file:bar.lua][bar.lua]] :: The bar(s)
-  - [[file:defaults.lua][defaults.lua]] :: Easy tunables
-  - [[file:helper.lua][helper.lua]] :: Utility
-  - [[file:keys.lua][keys.lua]] :: Keyboard shortcuts
-  - [[file:modal.lua][modal.lua]] :: Modal commands (think screen/stumpwm/emacs-like prefix
-       commands)
-  - [[file:buttons.lua][buttons.lua]] :: Mouse shortcuts
-  - [[file:rules.lua][rules.lua]] :: Window placement rules
-  - [[file:signals.lua][signals.lua]] :: Signals for things such as new windows, focus
-       change, focus policy.
-  - [[file:error_handling.lua][error_handling.lua]] :: Handle startup and runtime errors
+- [[file:rc.lua][rc.lua]] :: The config entrypoint
+- [[file:bar.lua][bar.lua]] :: The bar(s)
+- [[file:defaults.lua][defaults.lua]] :: Easy tunables
+- [[file:helper.lua][helper.lua]] :: Utility
+- [[file:keys.lua][keys.lua]] :: Keyboard shortcuts
+- [[file:modal.lua][modal.lua]] :: Modal commands (think screen/stumpwm/emacs-like prefix
+  commands)
+- [[file:buttons.lua][buttons.lua]] :: Mouse shortcuts
+- [[file:rules.lua][rules.lua]] :: Window placement rules
+- [[file:signals.lua][signals.lua]] :: Signals for things such as new windows, focus
+  change, focus policy.
+- [[file:error_handling.lua][error_handling.lua]] :: Handle startup and runtime errors
