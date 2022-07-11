@@ -7,6 +7,14 @@ local layouts = require './layouts'
 local naughty = require 'naughty'
 local util = require './util'
 
+local act = {
+    spawn = function(cmd)
+        return function()
+            awful.spawn(cmd)
+        end
+    end
+}
+
 -- Decorator that ensures the fn is only called when a client is focused.
 local function with_client(fn)
     return function()
@@ -93,6 +101,8 @@ return gears.table.join({
         bluetoothcontrol=function() awful.spawn('rofi-bluetooth-control') end,
         passwordmanager=function() awful.spawn('rofi-pass --last-used') end,
         dmenu=function() awful.spawn(defaults.dmenu) end,
+        nap=act.spawn(defaults.nap),
+        lock=act.spawn(defaults.lock),
         selectclient=function() awful.spawn('rofi -show window') end,
         restart=awesome.restart,
         quit=awesome.quit,

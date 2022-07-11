@@ -52,6 +52,8 @@ local launchmap = {
     {'S', actions.selectsink, 'switch pulseaudio sink'},
     {'b', actions.bluetoothcontrol, 'control Bluetooth'},
     {'p', actions.passwordmanager, 'type passwords'},
+    {'l', actions.lock, 'Lock screen'},
+    {'z', actions.nap, 'Zzz...'},
 }
 
 

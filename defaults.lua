@@ -9,6 +9,8 @@ return {
     editor = 'emacsclient -c',
     dmenu = 'rofi -show run -modi run,drun,window',
     modkey = 'Mod4',
+    nap = 'nap',
+    lock = 'lock',
     theme = gears.filesystem.get_configuration_dir() .. 'my_theme/theme.lua',
     layout = layouts.order[2],
     tags = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
