@@ -43,6 +43,14 @@ theme.modebox_bg = theme.bg_focus
 theme.modebox_border = theme.modebox_bg
 theme.modebox_border_width = dpi(10)
 
+-- Hotkeys
+theme.hotkeys_font  = string.format("Mono 14", font_family)  -- help should be easier to read
+theme.hotkeys_description_font = string.format("Sans 14", font_family)
+theme.hotkeys_bg = '#111111'
+theme.hotkeys_border_color = theme.hotkeys_bg
+theme.hotkeys_fg = '#eeeeee'
+theme.hotkeys_modifiers_fg = '#aa00aa'
+
 -- There are other variable sets
 -- overriding the default one when
 -- defined, the sets are:
