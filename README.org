@@ -1,6 +1,8 @@
 #+title: My Awesome Config
 #+startup: indent
 
+[[file:screenshot.png]]
+
 * Features
 ** Modal binds (like emacs, ratpoison, stumpwm)
 
