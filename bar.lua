@@ -1,6 +1,7 @@
 local wibox = require 'wibox'
 local awful = require 'awful'
 local gears = require 'gears'
+local beautiful = require 'beautiful'
 
 local util = require './util'
 local defaults = require './defaults'
@@ -167,6 +168,18 @@ return {
                 },
                 id = 'background_role',
                 widget = wibox.container.background,
+                create_callback = function(self, t, index, objs) --luacheck: no unused args
+                    self:connect_signal('mouse::enter', function()
+                                            if not t.selected then
+                                                self.bg = beautiful.taglist_bg_hover
+                                            end
+                    end)
+                    self:connect_signal('mouse::leave', function()
+                                            if not t.selected then
+                                                self.bg = beautiful.taglist_bg
+                                            end
+                    end)
+                end
             },
         }
 
