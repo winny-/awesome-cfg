@@ -6,8 +6,6 @@ local util = require './util'
 local defaults = require './defaults'
 local helper = require './helper'
 
-local lain = require './lain'
-
 -- See https://developer.gnome.org/pygtk/stable/pango-markup-language.html
 local mytextclock = wibox.widget.textclock('<span weight="normal">%a %b %d <span weight="heavy">%H:%M</span>:%S</span>' ,1)
 local mycalendar = awful.widget.calendar_popup.month()
@@ -152,7 +150,25 @@ return {
                                   awful.button({ }, 4, function () awful.layout.inc( 1) end),
                                   awful.button({ }, 5, function () awful.layout.inc(-1) end)))
         -- Create a taglist widget
-        s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
+        s.mytaglist = awful.widget.taglist {
+            screen = s,
+            filter = awful.widget.taglist.filter.all,
+            buttons = taglist_buttons,
+            widget_template = {
+                {
+                    {
+                        id = 'text_role',
+                        widget = wibox.widget.textbox,
+
+                    },
+                    widget = wibox.container.margin,
+                    left = 10,
+                    right = 10,
+                },
+                id = 'background_role',
+                widget = wibox.container.background,
+            },
+        }
 
         -- Create a tasklist widget
         s.mytasklist = awful.widget.tasklist {
