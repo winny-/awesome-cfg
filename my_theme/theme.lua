@@ -14,6 +14,8 @@ local theme = {}
 local font_size = 11
 local font_family = 'Sans Serif'
 
+theme.dpi = dpi  -- Expose for own api consumption
+
 theme.font          = string.format("%s %d", font_family, font_size)
 theme.tasklist_font_minimized = string.format("%s Italic %d", font_family, font_size)
 theme.tasklist_font_focus = string.format("%s Bold %d", font_family, font_size)
@@ -66,6 +68,10 @@ theme.hotkeys_modifiers_fg = '#aa00aa'
 
 -- My configs use this for mouse hover color
 theme.taglist_bg_hover = '#770077'
+
+-- This is used in conjunction with logic in bar.lua.  This value is used for
+-- the left,right margins on the button's sub-container.
+theme.taglist_padding = dpi(8)
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)

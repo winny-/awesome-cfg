@@ -163,8 +163,8 @@ return {
 
                     },
                     widget = wibox.container.margin,
-                    left = 10,
-                    right = 10,
+                    left = beautiful.taglist_padding or 0,
+                    right = beautiful.taglist_padding or 0,
                 },
                 id = 'background_role',
                 widget = wibox.container.background,
