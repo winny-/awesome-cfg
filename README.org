@@ -1,7 +1,9 @@
 #+title: My Awesome Config
 #+startup: indent
 
-[[file:screenshot.png]]
+[[file:screenshots/busy.png]]
+
+[[file:screenshots/bg.png]]
 
 * Features
 ** Modal binds (like emacs, ratpoison, stumpwm)
