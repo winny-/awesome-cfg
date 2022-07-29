@@ -8,18 +8,12 @@ beautiful.init(defaults.theme)
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
-local wibox = require("wibox") -- Widget and layout library
-local naughty = require("naughty") -- Notification library
 local menubar = require("menubar")
-local hotkeys_popup = require("awful.hotkeys_popup").widget
-
 
 local keys = require './keys'
 local buttons = require './buttons'
 local signals = require './signals'
 local helper = require './helper'
-
-
 
 local bar = require './bar'
 
@@ -39,3 +33,10 @@ root.keys(keys.global)
 root.buttons(buttons.global)
 
 signals.connect()
+
+local wallpaper = beautiful.get().wallpaper
+if wallpaper then
+    gears.wallpaper.maximized(wallpaper)
+else
+    gears.wallpaper.set('#111111') -- Fallback
+end

@@ -96,6 +96,7 @@ managemap = gears.table.join(managemap, {
     {'o', actions.nextscreen, 'Focus next screen'},
     {'O', actions.moveclienttoscreen, 'Move client to next screen and focus the screen'},
     {'separator', 'Awesome'},
+    {'`', actions.togglenotifications, 'toggle notifications'},
     {'\\', actions.restart, 'restart Awesome'},
 })
 

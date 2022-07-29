@@ -24,6 +24,15 @@ local function with_client(fn)
     end
 end
 
+local function togglenotifications()
+    if naughty.is_suspended() then
+        naughty.resume()
+    else
+        naughty.suspend()
+        naughty.destroy_all_notifications()
+    end
+end
+
 local function makeselecttag(idx)
     return function()
         local screen = awful.screen.focused()
@@ -70,6 +79,7 @@ for i = 1, 9 do
 end
 
 return gears.table.join({
+        togglenotifications=togglenotifications,
         nextclient=function() awful.client.focus.byidx(1) end,
         prevclient=function() awful.client.focus.byidx(-1) end,
         swapnextclient=function() awful.client.swap.byidx(1) end,
