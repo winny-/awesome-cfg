@@ -13,6 +13,7 @@ local mycalendar = awful.widget.calendar_popup.month()
 mycalendar:attach(mytextclock, 'tr', {on_hover=false})
 
 local myloadavg = awful.widget.watch("cut -f1-3 -d' ' < /proc/loadavg", 1)
+local myvolume = awful.widget.watch("ponymix get-volume", 1)
 
 -- XXX figure out why
 -- df -h --output=avail / | awk 'END { printf(\"%s\", $1); }'
@@ -225,6 +226,7 @@ return {
                             rootdf,
                             homedf,
                             myloadavg,
+                            myvolume,
                                      },
                         mybattery and {mybattery},
                         {
