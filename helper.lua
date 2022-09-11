@@ -16,13 +16,15 @@ return {
         end
     end,
     set_wallpaper = function(s)
-        if beautiful.wallpaper then
-            local wallpaper = beautiful.wallpaper
+        local wallpaper = beautiful.get().wallpaper
+        if wallpaper then
             -- If wallpaper is a function, call it with the screen
             if type(wallpaper) == "function" then
                 wallpaper = wallpaper(s)
             end
             gears.wallpaper.maximized(wallpaper, s, true)
+        else
+            gears.wallpaper.set('#1111111', s)
         end
     end,
     manage_titlebar=function(c)

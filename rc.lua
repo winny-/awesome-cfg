@@ -33,10 +33,3 @@ root.keys(keys.global)
 root.buttons(buttons.global)
 
 signals.connect()
-
-local wallpaper = beautiful.get().wallpaper
-if wallpaper then
-    gears.wallpaper.maximized(wallpaper)
-else
-    gears.wallpaper.set('#111111') -- Fallback
-end
