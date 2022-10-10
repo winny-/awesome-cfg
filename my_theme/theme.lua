@@ -20,7 +20,7 @@ theme.dpi = dpi  -- Expose for own api consumption
 
 theme.font          = string.format("%s %d", font_family, font_size)
 theme.tasklist_font_minimized = string.format("%s Italic %d", font_family, font_size)
-theme.tasklist_font_focus = string.format("%s Bold %d", font_family, font_size)
+theme.tasklist_font_focus = theme.font
 
 --[[
     Based off of https://colorhunt.co/palette/00000052057b892cdcbc6ff1
