@@ -22,22 +22,30 @@ theme.font          = string.format("%s %d", font_family, font_size)
 theme.tasklist_font_minimized = string.format("%s Italic %d", font_family, font_size)
 theme.tasklist_font_focus = string.format("%s Bold %d", font_family, font_size)
 
-theme.bg_normal     = "#222222"
-theme.bg_focus      = "#005577"
-theme.bg_urgent     = "#00ff00"
-theme.bg_minimize   = "#444444"
-theme.bg_systray    = theme.bg_normal
+--[[
+    Based off of https://colorhunt.co/palette/00000052057b892cdcbc6ff1
+]]
+local color0 = '#000000'
+local color1 = '#52057B'
+local color2 = '#892CDC'
+local color3 = '#BC6FF1'
 
-theme.fg_normal     = "#bbbbbb"
-theme.fg_focus      = "#eeeeee"
-theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
+theme.bg_normal     = color0
+theme.bg_focus      = color2
+theme.bg_urgent     = '#FF0000'
+theme.bg_minimize   = '#777777'
+theme.bg_systray    = color0
+
+theme.fg_normal     = color3
+theme.fg_focus      = color0
+theme.fg_urgent     = color0
+theme.fg_minimize   = color0
 
 theme.useless_gap   = dpi(0)
 theme.border_width  = dpi(1)
-theme.border_normal = "#444444"
-theme.border_focus  = "#aa0000"
-theme.border_marked = "#91231c"
+theme.border_normal = color0
+theme.border_focus  = color3
+theme.border_marked = '#00FF00'
 
 -- For modalbind.  See ../modalbind/README.md or
 -- https://github.com/crater2150/awesome-modalbind )
@@ -48,8 +56,8 @@ theme.modebox_border = theme.modebox_bg
 theme.modebox_border_width = dpi(10)
 
 -- Hotkeys
-theme.hotkeys_font  = string.format("Mono 14", font_family)  -- help should be easier to read
-theme.hotkeys_description_font = string.format("Sans 14", font_family)
+theme.hotkeys_font  = string.format("Mono 13", font_family)  -- help should be easier to read
+theme.hotkeys_description_font = string.format("Sans 13", font_family)
 theme.hotkeys_bg = '#111111'
 theme.hotkeys_border_color = theme.hotkeys_bg
 theme.hotkeys_fg = '#eeeeee'
@@ -69,7 +77,7 @@ theme.hotkeys_modifiers_fg = '#aa00aa'
 --theme.taglist_bg_focus = "#ff0000"
 
 -- My configs use this for mouse hover color
-theme.taglist_bg_hover = '#770077'
+theme.taglist_bg_hover = color1
 
 -- This is used in conjunction with logic in bar.lua.  This value is used for
 -- the left,right margins on the button's sub-container.
