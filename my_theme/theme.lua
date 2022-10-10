@@ -50,10 +50,10 @@ theme.border_marked = '#00FF00'
 -- For modalbind.  See ../modalbind/README.md or
 -- https://github.com/crater2150/awesome-modalbind )
 theme.modalbind_font = theme.font
-theme.modebox_fg = theme.fg_focus
-theme.modebox_bg = theme.bg_focus
-theme.modebox_border = theme.modebox_bg
-theme.modebox_border_width = dpi(10)
+theme.modebox_fg = theme.fg_normal
+theme.modebox_bg = theme.bg_normal
+theme.modebox_border = color1
+theme.modebox_border_width = dpi(3)
 
 -- Hotkeys
 theme.hotkeys_font  = string.format("Mono 13", font_family)  -- help should be easier to read
