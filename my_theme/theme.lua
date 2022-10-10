@@ -55,6 +55,9 @@ theme.modebox_bg = theme.bg_normal
 theme.modebox_border = color1
 theme.modebox_border_width = dpi(3)
 
+theme.maximized_hide_border = false
+theme.fullscreen_hide_border = false
+
 -- Hotkeys
 theme.hotkeys_font  = string.format("Mono 13", font_family)  -- help should be easier to read
 theme.hotkeys_description_font = string.format("Sans 13", font_family)
