@@ -29,16 +29,17 @@ local color0 = '#000000'
 local color1 = '#52057B'
 local color2 = '#892CDC'
 local color3 = '#BC6FF1'
+local color4 = '#EEEEEE'
 
 theme.bg_normal     = color0
 theme.bg_focus      = color2
 theme.bg_urgent     = '#FF0000'
-theme.bg_minimize   = '#777777'
+theme.bg_minimize   = '#999999'
 theme.bg_systray    = color0
 
 theme.fg_normal     = color3
-theme.fg_focus      = color0
-theme.fg_urgent     = color0
+theme.fg_focus      = color4
+theme.fg_urgent     = color4
 theme.fg_minimize   = color0
 
 theme.useless_gap   = dpi(0)
