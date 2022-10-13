@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -eu -o pipefail
+if ponymix is-muted; then
+    printf '🔇\n'
+else
+    vol="$(ponymix get-volume)"
+    if (( vol < 33 )); then
+        icon=🔈
+    elif (( vol < 66 )); then
+        icon=🔉
+    else
+        icon=🔊
+    fi
+    printf '%s%s%%\n' \
+           "$icon" \
+           "$vol"
+fi
