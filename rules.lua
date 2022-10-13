@@ -54,7 +54,10 @@ return {
     floats,
 
     { rule_any = { class = { "Steam" }},
-      properties = { tag = "9" }},
+      properties = {
+          tag = "9",
+          floating = false
+    }},
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
