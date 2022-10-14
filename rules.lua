@@ -58,6 +58,12 @@ return {
           tag = "9",
           floating = false
     }},
+    {
+        rule_any = { class = { "Inkscape" }},
+        properties = {
+            maximized = false
+        }
+    }
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
