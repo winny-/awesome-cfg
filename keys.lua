@@ -89,7 +89,7 @@ local clientkeys = gears.table.join(
     {description = "move to screen", group = "client"}),
   awful.key({ defaults.modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
       {description = "toggle keep on top", group = "client"}),
-  awful.key({ defaults. modkey,          }, "c",      function (c) c.sticky = not c.sticky          end,
+  awful.key({ defaults. modkey,          }, "c", actions.togglesticky,
       {description = "toggle sticky", group = "client"}),
   awful.key({ defaults.modkey,           }, "z",
     function (c)

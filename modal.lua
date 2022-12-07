@@ -84,6 +84,7 @@ managemap = gears.table.join(managemap, {
     {'Z', actions.restorerandom, 'unminimized random client on screen'},
     {'x', actions.pushmasterclient, 'push master'},
     {'X', actions.swapmasterclient, 'swap master'},
+    {'s', actions.togglesticky, 'toggle sticky'},
     {'w', actions.selectclient, 'select client'},
     {'separator', 'Tag'},
     {'Left', actions.prevtag, 'focus next tag (by index)'},

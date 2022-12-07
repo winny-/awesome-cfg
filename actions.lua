@@ -123,6 +123,7 @@ return gears.table.join({
                 c.fullscreen = not c.fullscreen
                 c:raise()
         end),
+        togglesticky=with_client(function(c) c.sticky = not c.sticky end),
         cycletile=function()
             local tag = util.gettagdwim()
             tag.layout = layouts.tiles[1]
