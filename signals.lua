@@ -50,9 +50,8 @@ local callbacks = {
                                   }
     end,
     mouse_enter_cb = function(c)
-        if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-        and awful.client.focus.filter(c) then
-            client.focus = c
+        if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier then
+            helper.maybefocus(c)
         end
     end,
     focus_cb = function(c)

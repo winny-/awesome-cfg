@@ -1,11 +1,12 @@
 local gears = require 'gears'
 local awful = require 'awful'
 
+local helper = require './helper'
 local defaults = require './defaults'
 
 return {
     client = gears.table.join(
-        awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
+        awful.button({ }, 1, function (c) helper.maybefocus(c); c:raise() end),
         awful.button({ defaults.modkey }, 1, awful.mouse.client.move),
         awful.button({ defaults.modkey }, 3, awful.mouse.client.resize)),
     global = gears.table.join(
@@ -14,12 +15,12 @@ return {
     make_titlebar = function(c)
         return gears.table.join(
             awful.button({ }, 1, function()
-                    client.focus = c
+                    helper.maybefocus(c)
                     c:raise()
                     awful.mouse.client.move(c)
             end),
             awful.button({ }, 3, function()
-                    client.focus = c
+                    helper.maybefocus(c)
                     c:raise()
                     awful.mouse.client.resize(c)
             end))

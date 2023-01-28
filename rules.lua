@@ -2,6 +2,7 @@ local beautiful = require('beautiful')
 local awful = require('awful')
 local keys = require './keys'
 local buttons = require './buttons'
+local helper = require './helper'
 
 -- Rules to apply to new clients (through the "manage" signal).
 local default_rule = {
@@ -9,7 +10,7 @@ local default_rule = {
     properties = {
         border_width = beautiful.border_width,
         border_color = beautiful.border_normal,
-        focus = awful.client.focus.filter,
+        focus = helper.focusfilter,
         raise = true,
         keys = keys.client,
         buttons = buttons.client,

@@ -2,6 +2,22 @@ local awful = require 'awful'
 local beautiful = require 'beautiful'
 local gears = require 'gears'
 
+--- Filter out window that we do not want handled by focus.
+-- This usually means that desktop, dock and splash windows are
+-- not registered and cannot get focus.
+--
+-- @client c A client.
+-- @return The same client if it's ok, nil otherwise.
+-- @function awful.client.focus.filter
+local function focusfilter (c)
+    if c.class == 'thunderbird' and c.role == "Popup" then
+        return nil
+    elseif awful.client.focus.filter(c) then
+        return c
+    end
+    return nil
+end
+
 return {
     client_menu_toggle_fn = function()
         local instance = nil
@@ -33,5 +49,9 @@ return {
         else
             awful.titlebar.hide(c)
         end
+    end,
+    focusfilter=focusfilter,
+    maybefocus=function (c)
+        if focusfilter(c) then client.focus = c end
     end,
 }
