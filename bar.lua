@@ -225,7 +225,6 @@ return {
                             layout = wibox.layout.fixed.horizontal,
                             spacing = 20,
                             rootdf,
-                            homedf,
                             myloadavg,
                             myvolume,
                                      },
