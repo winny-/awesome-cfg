@@ -147,6 +147,13 @@ return gears.table.join({
                 c:raise()
             end
         end,
+
+        unfloatall=function()
+            for _, cl in ipairs(awful.screen.focused().clients) do
+                cl.floating = false
+            end
+            naughty.notify({text="Unfloated all..."})
+        end,
     },
     selecttagfns,
     toggletagfns,
