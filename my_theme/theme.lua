@@ -101,6 +101,10 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
+theme.notification_height = dpi(75)
+theme.notification_width = dpi(250)
+theme.notification_max_height = dpi(100)
+theme.notification_max_width = dpi(300)
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
